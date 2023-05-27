@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import {User, UserStatistic} from "../lib/db";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function Home({users}) {
   const [stats, setStats] = useState(JSON.parse(users))
@@ -14,7 +14,7 @@ export default function Home({users}) {
             <li key={u.userId}
                 className="border border-gray-300 rounded-md px-4 py-2 flex justify-between items-center">
               <p className="flex-[1]">
-                <strong>#{i+1}</strong> {u.username}
+                <strong className="text-lg text-gray-400">#{i+1}</strong> {u.username}
               </p>
               <span className="text-xs text-gray-400 flex-[1]">
                 ID: {u.userId}
