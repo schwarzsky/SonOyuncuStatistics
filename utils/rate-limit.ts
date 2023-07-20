@@ -1,5 +1,5 @@
 import type { NextApiResponse } from 'next'
-import {LRUCache as LRU} from 'lru-cache'
+import { LRUCache as LRU } from 'lru-cache'
 
 // https://github.com/vercel/next.js/blob/canary/examples/api-routes-rate-limit/pages/api/user.ts
 
@@ -28,7 +28,7 @@ export default function rateLimit(options?: Options) {
         res.setHeader('X-RateLimit-Limit', limit)
         res.setHeader(
           'X-RateLimit-Remaining',
-          isRateLimited ? 0 : limit - currentUsage
+          isRateLimited ? 0 : limit - currentUsage,
         )
 
         return isRateLimited ? reject() : resolve()
