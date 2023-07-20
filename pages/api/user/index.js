@@ -1,3 +1,4 @@
+import mongoose from 'mongoose'
 import { User, UserStatistic } from '../../../lib/db'
 import rateLimit from '../../../utils/rate-limit'
 
@@ -21,6 +22,7 @@ export default async function handler(req, res) {
         .status(400)
         .json({ ok: false, message: 'Limit must be 〜1000' })
 
+    await mongoose.connect(process.env.MONGO_CONNECT)
     const userStatistics = await UserStatistic.find()
       .limit(limit)
       .sort({ total: 'desc' })
