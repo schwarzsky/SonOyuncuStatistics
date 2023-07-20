@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 
-function SonOyuncuEskiSiralama({ Component, pageProps }) {
+function SonOyuncuStatistics({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
 
-export default SonOyuncuEskiSiralama
+export default SonOyuncuStatistics

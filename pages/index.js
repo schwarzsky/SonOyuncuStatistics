@@ -1,30 +1,45 @@
 import mongoose from "mongoose";
 import {StaffTag, User, UserStatistic} from "../lib/db";
 import {useEffect, useState} from "react";
+import Head from "next/head";
 
 export default function Home({users, usersCount, userStatisticsCount, staffTagsCount}) {
   const [stats, setStats] = useState(JSON.parse(users))
 
   return (
-    <div className="container mx-auto min-h-screen py-6">
-      <h3 className="text-3xl font-semibold">SonOyuncu eski sıralama - ilk 300</h3>
-      <ul className="flex gap-6 font-mono text-sm font-semibold text-gray-400 list-disc">
-        <li>Toplam kayıtlı kullanıcı: {usersCount}</li>
-        <li>Kayıtlı kullanıcı istatiği {userStatisticsCount}</li>
-        <li>Yetkili etiketleme istatistiği: {staffTagsCount}</li>
+    <div className="container max-w-[720px] mx-auto min-h-screen py-6">
+      <Head>
+        <title>sonoyuncu statistics</title>
+        <link rel="icon" 
+          type="image/png" 
+          href="/favicon.png" 
+        />
+        <meta name="theme-color" content="#0f03fc" />
+      </Head>
+      <header className="flex items-center justify-between py-16">
+        <img src="output.gif" width={50} height={50} className="hover:blur-[2px] transition-all cursor-pointer "/>
+        <h1 className="font-medium text-slate-500">sonoyuncu statistics</h1>
+      </header>
+      <section className="py-16">
+        <h3 className="font-medium text-sm">API</h3>
+        <p><code>https://sonoyuncu.korau.co/api/user/id</code> -&gt;
+        <br/> <code>https://sonoyuncu.korau.co/api/user/925383171741188106</code></p>
+      </section>
+      <ul className="flex gap-6 uppercase text-xs font-semibold text-gray-400 border-b py-2">
+        <li>Registered Users: {usersCount}</li>
+        <li className="flex-[1] flex justify-center">User Data Count: {userStatisticsCount}</li>
+        <li className="self-end">Staff Tag Count: {staffTagsCount}</li>
       </ul>
-      <ul className="mt-4 flex flex-col gap-2">
+      <ul className="mt-4 flex flex-col gap-2 [&>*:first-child]:text-transparent [&>*:first-child]:bg-clip-text [&>*:first-child]:bg-gradient-to-r [&>*:first-child]:from-blue-700 [&>*:first-child]:to-blue-900">
         {stats.map((u, i) => {
           return (
             <li key={u.userId}
-                className="border border-gray-300 rounded-md px-4 py-2 flex justify-between items-center hover:font-semibold hover:border-orange-400">
-              <p className="flex-[1]">
-                <strong className="text-lg text-gray-400">#{i+1}</strong> {u.username}
+                className="flex justify-between">
+              <p>
+                {i+1}.{u.username}
               </p>
-              <span className="text-xs text-gray-400 flex-[1]">
-                ID: {u.userId}
-              </span>
-              <p className="font-mono text-sm">İlk mesaj: {u.firstMessage} - Toplam: {u.total}</p>
+              <span className="flex-[1] border-b border-b-gray-300 border-dotted self-end"></span>
+              <p className="text-xs text-slate-500">{u.userId}</p>
             </li>
           )
         })}

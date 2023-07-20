@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "lru-cache": "^10.0.0",
     "mongoose": "^7.2.1",
     "next": "13.4.3",
     "react": "18.2.0",

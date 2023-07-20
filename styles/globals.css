@@ -1,4 +1,5 @@
 @import url("https://rsms.me/inter/inter.css");
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,4 +7,8 @@
 
 * {
   font-family: 'Inter', sans-serif;
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace;
 }
